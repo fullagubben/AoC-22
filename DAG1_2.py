@@ -18,13 +18,13 @@ for game in games:
     elif game == "B X":
         player1 += 2+6 # won with paper
         player2 += 1    # lost with rock
-    elif game == "A X": # lika med rock
+    elif game == "A X": # draw with rock
         player1 += 1+3
         player2 += 1+3
-    elif game == "B Y": # lika med paper
+    elif game == "B Y": # draw with paper
         player1 += 2+3
         player2 += 2+3   
-    elif game == "C Z": # lika med scissor
+    elif game == "C Z": # draw with scissor
         player1 += 3+3
         player2 += 3+3
     elif game == "C X":
