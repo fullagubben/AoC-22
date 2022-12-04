@@ -1,0 +1,31 @@
+with open('LIST4.txt', 'r') as f:
+    lines = [entry.strip() for entry in f.readlines()]
+
+score = 0
+for line in lines:
+    print(line)
+    range1, range2 = line.split(',')
+    range11, range12 = range1.split('-')
+    range21, range22 = range2.split('-')
+    if range11 == range12:
+        range10 = set(range11)
+    else: 
+        range10 = range(int(range11),int(range12)+1) 
+    if range21 == range22:
+        range20 = set(range22)
+    else:
+        range20 = range(int(range21),int(range22)+1) 
+    
+    if set(range10).issubset(set(range20)) or set(range20).issubset(set(range10)):
+        score += 1
+        print(set(range10),set(range20),True,score)
+    else:
+        print(set(range10),set(range20),False)
+    range10=0
+    range20 = 0
+print(score)
+
+#5-85,4-4
+#range(5, 85) range(4, 4) True 292
+
+
