@@ -1,31 +1,19 @@
 with open('LIST4.txt', 'r') as f:
     lines = [entry.strip() for entry in f.readlines()]
 
+def rangemodder (inputline):
+    split1, split2 = inputline.split(',')
+    range1 = range(int(split1.split('-')[0]),int(split1.split('-')[1])+1)
+    range2 = range(int(split2.split('-')[0]),int(split2.split('-')[1])+1)
+    return range1,range2
 score = 0
+score2 = 0
 for line in lines:
-    print(line)
-    range1, range2 = line.split(',')
-    range11, range12 = range1.split('-')
-    range21, range22 = range2.split('-')
-    if range11 == range12:
-        range10 = set(range11)
-    else: 
-        range10 = range(int(range11),int(range12)+1) 
-    if range21 == range22:
-        range20 = set(range22)
-    else:
-        range20 = range(int(range21),int(range22)+1) 
-    
-    if set(range10).issubset(set(range20)) or set(range20).issubset(set(range10)):
+    print(set(rangemodder(line)[0]).intersection(set(rangemodder(line)[1])))
+    if set(rangemodder(line)[0]).issubset(set(rangemodder(line)[1])) or set(rangemodder(line)[1]).issubset(set(rangemodder(line)[0])):
         score += 1
-        print(set(range10),set(range20),True,score)
-    else:
-        print(set(range10),set(range20),False)
-    range10=0
-    range20 = 0
-print(score)
+    if set(rangemodder(line)[0]) & set(rangemodder(line)[1]):
+        
+        score2 += 1
 
-#5-85,4-4
-#range(5, 85) range(4, 4) True 292
-
-
+print(score, score2)
