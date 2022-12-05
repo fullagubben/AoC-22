@@ -1,0 +1,92 @@
+import numpy as np
+text = '[Z] [M] [P]'
+text2 = '[Z] [M] [P]'
+
+
+my_file = open("LIST5.txt", "r")
+data = my_file.read() 
+data_into_list = data.split("\n")
+
+gameplan = []
+i = 1
+crane = 0
+
+def stackhandling(data,number,height):
+    gameplan = []
+    temparray = []
+    tempa = []
+    n=1
+    for n in range(height+1):
+        for nm in data_into_list:
+            if '[' in nm:
+                if stacksplitter(nm,n) != None:
+                    tempa.append(stacksplitter(nm,n))
+        tempa.reverse()
+        gameplan.append(tempa)
+        tempa = []
+    return gameplan
+
+
+def stacksplitter (input,charindex):
+    if input[1+(charindex)*4] != ' ':
+        temparray = (input[1+(charindex)*4])
+        return temparray
+
+def movedecrypter (data):
+    print(data)
+    result = data.split(' ')
+    return int(result[1]), int(result[3]), int(result[5])
+
+def craneoperator (movequant, movefrom, moveto):
+    print(movequant,movefrom,moveto)
+    movefrom -= 1
+    moveto -= 1
+    tempadd = gameplan[movefrom][len(gameplan[movefrom])-movequant:]
+    print(tempadd)
+    if crane == 1:    
+        tempadd.reverse()
+    print(tempadd)
+    print(gameplan[moveto])
+    gameplan[moveto].extend(tempadd)  # adds to list
+
+    for i in range(movequant):    # removes from list
+        gameplan[movefrom].pop()
+    
+def heightlenghtckecker():
+    count = 0
+    for j in data_into_list:
+        if not 'move' in j:
+            count += 1
+        height = count-2    
+    lenght = int((len(data_into_list[height])+1)/4)
+    return height,lenght
+
+def finishcounter():
+    for k in range(lenght):
+        print(gameplan[k][-1])
+
+
+################################################################
+
+   
+
+height, lenght = heightlenghtckecker()
+print(height,lenght)
+
+gameplan = stackhandling(data_into_list,3,height)
+print(gameplan)
+
+
+for l in gameplan:
+    gameplan = list(filter(None, gameplan))
+print(gameplan)
+
+
+for instruction in data_into_list[lenght+1:]:
+    
+    craneoperator(movedecrypter(instruction)[0],movedecrypter(instruction)[1],movedecrypter(instruction)[2])
+    print(gameplan)
+
+print(len(gameplan[1]))
+finishcounter()
+
