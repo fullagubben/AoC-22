@@ -1,0 +1,44 @@
+my_file = open("LIST6.txt", "r")
+data = my_file.read() 
+packets = data.split("\n")
+
+tempbase = []
+where = []
+temp = set([])
+
+def markercheck (input):
+    i = 0
+    id = 0
+    tempbase = []
+
+    number = 14  # number if uniqe characters
+    for letter in input:
+        tempbase.append(letter)
+        if len(tempbase) > number:
+            tempbase.pop(0)
+        id += 1
+        print(tempbase)
+        if id >= number and (len(set(tempbase)) == len(tempbase)):
+            print(id)
+            where.append(id)
+            return  
+        
+print(where)
+
+
+
+ 
+
+
+        
+
+
+
+
+i = 0
+id = 0
+for packet in packets:
+    markercheck(packet)
+
+
+
