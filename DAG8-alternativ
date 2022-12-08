@@ -1,0 +1,137 @@
+def checksize(forest):
+    columns = 0
+    rows = len(forest[0])
+    for trees in forest:
+        columns += 1
+    print(columns,rows)
+    return columns,rows
+
+
+
+def checksize(forest):
+    columns = 0
+    rows = len(forest[0])
+    for trees in forest:
+        columns += 1
+    print(columns,rows)
+    return columns,rows
+
+column_size = checksize(forest)[0]
+row_size = checksize(forest)[1]
+
+
+a = []
+
+for trees in forest:
+    a.append(list(trees))
+
+print(a)
+
+tempold = -1
+tempnew = -1
+total = 0
+rownr = -1
+columnr = -1
+treelist1 = []
+treelist2 = []
+treelist3 = []
+treelist4 = []
+
+for rows in a:
+    rows = rows[::-1]
+    rownr += 1
+    columnr = -1
+    tempold = -1
+    for digit in rows:
+        columnr += 1
+        tempnew = digit
+        print('New = ' + str(tempnew) )
+        print('Old = ' + str(tempold) )
+        if int(tempnew) > int(tempold):
+            print(digit)
+            total += 1 
+            treelist1.append([rownr,4-columnr])
+            
+            tempold = tempnew
+tempold = -1
+tempnew = -1
+total = 0
+rownr = -1
+columnr = -1
+
+for rows in a:
+    rows = rows
+    rownr += 1
+    columnr = -1
+    tempold = -1
+    for digit in rows:
+        columnr += 1
+        tempnew = digit
+        print('New = ' + str(tempnew) )
+        print('Old = ' + str(tempold) )
+        if int(tempnew) > int(tempold):
+            print(digit)
+            total += 1 
+            treelist2.append([rownr,columnr])
+            
+            tempold = tempnew
+
+
+
+
+tempnumberlist = []
+
+for tree in forest:
+    tempnumberlist.append(list(tree))
+
+A = np.array(tempnumberlist)
+B = np.transpose(A)
+        
+tempold = -1
+tempnew = -1
+total = 0
+rownr = -1
+columnr = -1
+
+
+
+for rows in A:
+    rows = rows
+    rownr += 1
+    columnr = -1
+    tempold = -1
+    for digit in rows:
+        columnr += 1
+        tempnew = digit
+        print('New = ' + str(tempnew) )
+        print('Old = ' + str(tempold) )
+        if int(tempnew) > int(tempold):
+            print(digit)
+            total += 1 
+            treelist3.append([columnr,rownr])
+            
+            tempold = tempnew
+tempold = -1
+tempnew = -1
+total = 0
+rownr = -1
+columnr = -1
+
+for rows in A:
+    rows = rows[::-1]
+    rownr += 1
+    columnr = -1
+    tempold = -1
+    for digit in rows:
+        columnr += 1
+        tempnew = digit
+        print('New = ' + str(tempnew) )
+        print('Old = ' + str(tempold) )
+        if int(tempnew) > int(tempold):
+            print(digit)
+            total += 1 
+            treelist4.append([rownr,columnr])
+            
+            tempold = tempnew
+treelistnew = []
+tempold = -1
