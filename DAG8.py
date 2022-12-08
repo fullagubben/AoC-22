@@ -23,11 +23,11 @@ treelistnew = []
 for tree in forest:
     tempnumberlist.append(list(tree))
 
-A = np.array(tempnumberlist)
+Tree_matrix = np.array(tempnumberlist)
 for rows in range(0,rangerows):    # VÄNSTER TILL HÖGER
     tempold = -1
     for columns in range(0,rangecolumns):
-        tempnew = A[rows][columns]
+        tempnew = Tree_matrix[rows][columns]
         if str(tempnew) > str(tempold):
             treelistnew.append([rows,columns])
             tempold = tempnew
@@ -36,7 +36,7 @@ for rows in range(0,rangerows):    # VÄNSTER TILL HÖGER
 for columns in range(0,rangecolumns):              # UPP TILL NER
     tempold = -1
     for rows in range(0,rangerows):
-        tempnew = A[rows][columns]
+        tempnew = Tree_matrix[rows][columns]
         if str(tempnew) > str(tempold):
             treelistnew.append([rows,columns])
             tempold = tempnew
@@ -47,7 +47,7 @@ for columns in range(0,rangecolumns):              # UPP TILL NER
 for rows in range(0,rangerows):                 # HÖGER TILL VÄNSTER
     tempold = -1
     for columns in reversed(range(0,rangecolumns)):
-        tempnew = A[rows][columns]
+        tempnew = Tree_matrix[rows][columns]
         if str(tempnew) > str(tempold):
             treelistnew.append([rows,columns])
             tempold = tempnew
@@ -57,7 +57,7 @@ for rows in range(0,rangerows):                 # HÖGER TILL VÄNSTER
 for columns in range(0,rangecolumns):              # NERIFRÅN TILL UPP
     tempold = -1
     for rows in reversed(range(0,rangerows)):
-        tempnew = A[rows][columns]
+        tempnew = Tree_matrix[rows][columns]
         if str(tempnew) > str(tempold):
             treelistnew.append([rows,columns])
             tempold = tempnew
@@ -110,8 +110,8 @@ def find_best_tree(tree):
                 right += 1   
             totscore = max(totscore, up*left*down*right)
     return totscore
-    
-print(find_best_tree(A))
+
+print(find_best_tree(Tree_matrix))
 
 
 
